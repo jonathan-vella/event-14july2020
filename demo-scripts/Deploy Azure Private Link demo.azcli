@@ -1,0 +1,152 @@
+### Deploy Azure Private Link demo using Azure CLI ###
+### Last modified 07-April-2020
+### Author jonathan.vella@microsoft.com
+
+##Define Variables
+  subscription="iLuvCloud" # Azure subscription where resources will be deployed
+  location="WestEurope" # Azure Region for you resources
+  resgroup_name="demo-privlink08-rg" # Azure Resource Group name
+
+##Login to Azure and specify subscription **use only if not using Cloud Shell**
+  az login
+  az account set --subscription $subscription
+
+##Create Resource Group
+  az group create --name $resgroup_name --location $location
+
+##Create Virtual Networks and Subnets
+  #Create Service Provider Virtual Network
+    az network vnet create \
+    --name svcp-vnet \
+    --resource-group $resgroup_name \
+    --location $location \
+    --address-prefix 192.168.0.0/16 \
+    --subnet-name svcp-snet \
+    --subnet-prefix 192.168.1.0/24
+        
+    #Create Customer Virtual network
+    az network vnet create \
+    --name cst-vnet \
+    --resource-group $resgroup_name \
+    --location $location \
+    --address-prefix 192.168.0.0/16 \
+    --subnet-name cst-snet \
+    --subnet-prefix 192.168.1.0/24
+
+# Create a network security group for Service Provider subnet.
+    az network nsg create \
+    --resource-group $resgroup_name \
+    --name nsg-svcp \
+    --location $location
+
+#Create an NSG rule to allow HTTP taffic
+   az network nsg rule create \
+    --resource-group $resgroup_name \
+    --nsg-name nsg-svcp \
+    --name Allow-HTTP \
+    --access Allow --protocol Tcp \
+    --direction Inbound \
+    --priority 200 \
+    --source-address-prefix "*" \
+    --source-port-range "*" \
+    --destination-address-prefix "*" \
+    --destination-port-range 80
+
+   #Associate the NSG to the subnet.
+    az network vnet subnet update \
+    --vnet-name svcp-vnet \
+    --name svcp-snet \
+    --resource-group $resgroup_name \
+    --network-security-group nsg-svcp
+
+# Create Standard Load Balancer
+az network lb create \
+    --resource-group $resgroup_name \
+    --name svcp-ilb \
+    --sku standard \
+    --frontend-ip-name svcp-app-fe \
+    --private-ip-address 192.168.1.10 \
+    --backend-pool-name svcp-app-be \
+    --vnet-name svcp-vnet \
+    --subnet svcp-snet
+
+        # Create Health Probe
+        az network lb probe create \
+        --resource-group $resgroup_name \
+        --lb-name svcp-ilb \
+        --name svcp-app-probe \
+        --protocol tcp \
+        --port 80
+
+            #Create Load Balancer Rule
+                az network lb rule create \
+            --resource-group $resgroup_name  \
+            --lb-name svcp-ilb \
+            --name svcp-app-http \
+            --protocol tcp \
+            --frontend-port 80 \
+            --backend-port 80 \
+            --frontend-ip-name svcp-app-fe \
+            --backend-pool-name svcp-app-be \
+            --probe-name svcp-app-probe
+
+##Create network cards for VMs
+    #Create NIC for Service Provider VM and associated to BackEnd Pool
+        az network nic create \
+        -g $resgroup_name \
+        -n svcp-nic-vm01 \
+        --vnet-name svcp-vnet \
+        --subnet svcp-snet \
+        --lb-name svcp-ilb \
+        --lb-address-pools svcp-app-be
+        
+    #Create NIC for Customer VM
+        az network nic create \
+        -g $resgroup_name \
+        -n cst-nic-vm01 \
+        --vnet-name cst-vnet \
+        --subnet cst-snet \
+
+# Create Service Provider VM with IIS
+   az vm create \
+    --resource-group $resgroup_name \
+    --name svcp-vm01 \
+    --nics svcp-nic-vm01 \
+    --image win2019datacenter \
+    --admin-username jonathan \
+    --size Standard_B2s \
+    --boot-diagnostics-storage ilcdiagwe
+
+        # Use CustomScript extension to install IIS.
+        az vm extension set \
+        --publisher Microsoft.Compute \
+        --version 1.8 \
+        --name CustomScriptExtension \
+        --vm-name svcp-vm01 \
+        --resource-group $ResourceGroupName \
+        --settings '{"commandToExecute":"powershell.exe Install-WindowsFeature -Name Web-Server -IncludeManagementTools"}'
+
+# Create Customer VM
+   az vm create \
+    --resource-group $resgroup_name \
+    --name cst-vm01 \
+    --nics cst-nic-vm01 \
+    --image win2019datacenter \
+    --admin-username jonathan \
+    --size Standard_B2s \
+    --boot-diagnostics-storage ilcdiagwe
+
+# Create Private Link
+az network private-link-service create \
+--resource-group $resgroup_name  \
+--name svcp-privlink01 \
+--vnet-name svcp-vnet \
+--subnet svcp-snet \
+--lb-name svcp-ilb \
+--lb-frontend-ip-configs svcp-app-fe \
+--location westeurope
+
+# If the above fails, we need to disable network policies :-(
+# az network vnet subnet update --resource-group $resgroup_name --vnet-name svcp-vnet --name svcp-snet --disable-private-link-service-network-policies true
+
+

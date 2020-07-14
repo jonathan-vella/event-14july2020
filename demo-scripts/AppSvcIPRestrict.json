@@ -1,0 +1,316 @@
+{
+  "ipSecurityRestrictions": [
+      {
+        "ipAddress": "13.73.248.16/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.37.64.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.37.156.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.37.195.0/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.37.224.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.38.84.72/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.38.136.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.39.11.8/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.41.4.88/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.41.64.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.41.192.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.42.4.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.42.129.152/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.42.224.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.43.41.136/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.43.65.128/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.43.130.80/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.45.112.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.45.192.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.150.160.96/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.189.106.112/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.192.161.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "20.192.225.48/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.67.48.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.74.30.72/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.80.56.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.80.168.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.80.184.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.82.248.248/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "40.89.16.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.12.41.8/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.12.193.8/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.104.25.128/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.105.80.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.105.88.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.107.48.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.107.144.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.120.40.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.120.224.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.137.160.112/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "51.143.192.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "52.136.48.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "52.140.104.104/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "52.150.136.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "52.228.80.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "102.133.56.88/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "102.133.216.88/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "147.243.0.0/16",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "191.233.9.120/29",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "2a01:111:2050::/44",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "168.63.129.16/32",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      },
+      {
+        "ipAddress": "169.254.169.254/32",
+        "action": "Allow",
+        "tag": "Default",
+        "priority": 100
+      }
+    ]
+}
